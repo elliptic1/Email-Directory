@@ -1,4 +1,4 @@
-package com.tbse.emaildirectory.ui.theme
+package com.tbse.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
