@@ -54,7 +54,6 @@ android {
 dependencies {
 
     implementation project(path: ':ui')
-    implementation project(path: ':domain')
 
     // Hilt
     implementation "com.google.dagger:hilt-android:2.44.2"

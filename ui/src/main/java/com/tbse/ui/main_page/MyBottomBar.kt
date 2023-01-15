@@ -5,17 +5,18 @@ import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Call
-import androidx.compose.material.icons.filled.List
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import com.tbse.ui.navigation.Graph
+import com.tbse.ui.navigation.screens
 
 /**
  * Created by toddsmith on 1/14/23.
@@ -25,31 +26,24 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 fun MyBottomBar(
     modifier: Modifier = Modifier,
     config: MyBottomBarConfig,
+    navController: NavController,
 ) {
-    val q by remember { mutableStateOf(false) }
-    BottomNavigation() {
-        BottomNavigationItem(
-            icon = {
-                Icon(
-                    modifier = Modifier,
-                    contentDescription = "",
-                    imageVector = Icons.Default.Add,
-                )
-            },
-            selected = true,
-            onClick = { /*TODO*/ },
-        )
-        BottomNavigationItem(
-            icon = {
-                Icon(
-                    modifier = Modifier,
-                    contentDescription = "",
-                    imageVector = Icons.Default.List,
-                )
-            },
-            selected = true,
-            onClick = { /*TODO*/ },
-        )
+    BottomNavigation {
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentDestination = navBackStackEntry?.destination
+        screens.forEach { screen ->
+            BottomNavigationItem(
+                icon = {
+                    Icon(
+                        modifier = Modifier,
+                        contentDescription = "",
+                        imageVector = screen.icon,
+                    )
+                },
+                selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
+                onClick = { navController.navigate(screen.route) },
+            )
+        }
     }
 }
 
@@ -66,6 +60,7 @@ fun MyBottomBarPreview(
     MyBottomBar(
         modifier = Modifier,
         config = config,
+        navController = rememberNavController()
     )
 }
 

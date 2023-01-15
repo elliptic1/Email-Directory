@@ -2,17 +2,11 @@ package com.tbse.ui.main_page
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.tooling.preview.PreviewParameterProvider
+import androidx.navigation.compose.rememberNavController
+import com.tbse.ui.navigation.MyNavGraph
 
 /**
  * Created by toddsmith on 1/14/23.
@@ -22,24 +16,27 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 fun MyScaffold(
     modifier: Modifier = Modifier,
 ) {
+    val navController = rememberNavController()
     Scaffold(
-        modifier = Modifier,
+        modifier = modifier,
         topBar = {
-            TopAppBar(
-                title = {
-                    Text("Email Directory")
-                },
+            MyTopBar(
+                modifier = Modifier,
+                config = MyTopBarConfig(""),
             )
         },
         bottomBar = {
-            MyBottomBar(config = MyBottomBarConfig(""))
+            MyBottomBar(
+                modifier = Modifier,
+                config = MyBottomBarConfig(""),
+                navController = navController,
+            )
         },
     ) { padding ->
-        MainScreenComposable(
+        MyNavGraph(
             modifier = Modifier
-                .padding(
-                    paddingValues = padding,
-                )
+                .padding(padding),
+            navController = navController,
         )
     }
 }
