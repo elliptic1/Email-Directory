@@ -13,7 +13,13 @@ import javax.inject.Inject
 class EmailListScreenUseCase @Inject constructor(
     private val repo: EmailListScreenRepository,
 ) {
-    operator fun invoke(): Flow<Resource<out EmailListModel>> = flow {
-
+    fun getEmails(): Flow<Resource<out EmailListModel>> = flow {
+        emit(Resource.Loading())
+        try {
+            val emails = repo.getAllEmails()
+            emit(Resource.Success(emails))
+        } catch (e: Exception) {
+            emit(Resource.Error(message = e.message ?: "No error message"))
+        }
     }
 }

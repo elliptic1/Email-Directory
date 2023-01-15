@@ -1,8 +1,9 @@
 package com.tbse.domain.di
 
-import com.tbse.data.models.EmailListDTO
+import com.tbse.data.manager.DBManager
+import com.tbse.data.models.EmailItemDTO
 import com.tbse.domain.ModelMapper
-import com.tbse.domain.models.EmailListModel
+import com.tbse.domain.models.EmailItemModel
 import com.tbse.domain.repositories.EmailListScreenRepository
 import com.tbse.domain.repositories.EmailListScreenRepositoryImpl
 import dagger.Module
@@ -19,9 +20,10 @@ class DomainModule {
 
     @Provides
     fun providesEmailListScreenRepository(
-        mapper: ModelMapper<EmailListDTO, EmailListModel>
+        emailsManager: DBManager,
+        mapper: ModelMapper<EmailItemDTO, EmailItemModel>
     ): EmailListScreenRepository {
-        return EmailListScreenRepositoryImpl(mapper)
+        return EmailListScreenRepositoryImpl(emailsManager, mapper)
     }
 
 }

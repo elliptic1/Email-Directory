@@ -7,6 +7,9 @@ import javax.inject.Inject
 
 /**
  * Created by toddsmith on 1/15/23.
+ *
+ * This is to prepare date from the domain layer to be useful in the UI layer
+ *
  */
 class EmailItemMapper @Inject constructor(
 ) : ModelMapper<EmailItemDTO, EmailItemModel> {

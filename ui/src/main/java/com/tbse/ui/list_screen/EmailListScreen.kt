@@ -29,6 +29,7 @@ fun EmailListScreen(
                     "Loading..."
                 )
             )
+            viewModel.startFlow()
         }
         is EmailListScreenState.ReceivedEmailList -> {
             EmailListComposable(
