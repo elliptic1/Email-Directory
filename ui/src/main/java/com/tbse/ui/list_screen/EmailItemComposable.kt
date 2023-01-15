@@ -23,6 +23,7 @@ fun EmailItemComposable(
     Box(
         modifier = modifier
             .padding(8.dp)
+            .fillMaxWidth()
             .background(
                 color = Color.Gray
             )
@@ -30,7 +31,7 @@ fun EmailItemComposable(
         Column(
             modifier = modifier
                 .fillMaxWidth()
-                .padding(4.dp)
+                .padding(18.dp)
         ) {
             Text(text = config.name)
             Spacer(

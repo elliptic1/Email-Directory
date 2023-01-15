@@ -1,4 +1,4 @@
-package com.tbse.domain.repositories
+package com.tbse.domain.repositories.list_screen
 
 import com.tbse.data.manager.DBManager
 import com.tbse.data.models.EmailItemDTO

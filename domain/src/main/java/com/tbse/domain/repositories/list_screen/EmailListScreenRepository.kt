@@ -1,4 +1,4 @@
-package com.tbse.domain.repositories
+package com.tbse.domain.repositories.list_screen
 
 import com.tbse.domain.models.EmailListModel
 

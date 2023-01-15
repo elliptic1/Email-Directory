@@ -1,8 +1,8 @@
-package com.tbse.domain.use_case
+package com.tbse.domain.use_case.list_screen
 
 import com.tbse.data.resource.Resource
 import com.tbse.domain.models.EmailListModel
-import com.tbse.domain.repositories.EmailListScreenRepository
+import com.tbse.domain.repositories.list_screen.EmailListScreenRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

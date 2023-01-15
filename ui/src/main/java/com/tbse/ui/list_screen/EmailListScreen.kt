@@ -34,7 +34,15 @@ fun EmailListScreen(
         is EmailListScreenState.ReceivedEmailList -> {
             EmailListComposable(
                 modifier = modifier,
-                config = EmailListComposableConfig(listOf())
+                config = EmailListComposableConfig(
+                    stateValue.emailList
+                        .map {
+                            EmailItemComposableConfig(
+                                name = it.name,
+                                email = it.email,
+                            )
+                        }
+                )
             )
         }
         is EmailListScreenState.Error -> {

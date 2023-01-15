@@ -1,10 +1,9 @@
 package com.tbse.domain.viewmodels.email_list
 
-import android.provider.ContactsContract.CommonDataKinds.Email
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tbse.data.resource.Resource
-import com.tbse.domain.use_case.EmailListScreenUseCase
+import com.tbse.domain.use_case.list_screen.EmailListScreenUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject

@@ -7,4 +7,6 @@ import com.tbse.data.models.EmailItemDTO
  */
 interface DBManager {
     suspend fun getAllEmails(): List<EmailItemDTO>
+
+    suspend fun addEmail(name: String, email: String)
 }

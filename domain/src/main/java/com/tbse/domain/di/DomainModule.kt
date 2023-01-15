@@ -4,8 +4,10 @@ import com.tbse.data.manager.DBManager
 import com.tbse.data.models.EmailItemDTO
 import com.tbse.domain.ModelMapper
 import com.tbse.domain.models.EmailItemModel
-import com.tbse.domain.repositories.EmailListScreenRepository
-import com.tbse.domain.repositories.EmailListScreenRepositoryImpl
+import com.tbse.domain.repositories.add_screen.AddEmailScreenRepository
+import com.tbse.domain.repositories.add_screen.AddEmailScreenRepositoryImpl
+import com.tbse.domain.repositories.list_screen.EmailListScreenRepository
+import com.tbse.domain.repositories.list_screen.EmailListScreenRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,6 +26,13 @@ class DomainModule {
         mapper: ModelMapper<EmailItemDTO, EmailItemModel>
     ): EmailListScreenRepository {
         return EmailListScreenRepositoryImpl(emailsManager, mapper)
+    }
+
+    @Provides
+    fun providesAddEmailScreenRepository(
+        emailsManager: DBManager,
+    ): AddEmailScreenRepository {
+        return AddEmailScreenRepositoryImpl(emailsManager)
     }
 
 }
