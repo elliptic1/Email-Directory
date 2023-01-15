@@ -17,4 +17,8 @@ class EmailListScreenRepositoryImpl(
                 .map { emailItemDTOMapper.map(it) }
         )
     }
+
+    override suspend fun deleteItem(id: Int) {
+        emailsManager.deleteItem(id)
+    }
 }

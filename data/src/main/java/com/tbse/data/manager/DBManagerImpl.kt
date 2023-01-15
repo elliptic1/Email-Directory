@@ -27,4 +27,15 @@ class DBManagerImpl @Inject constructor(
                 )
             )
     }
+
+    override suspend fun deleteItem(id: Int) {
+        emailsDao
+            .deleteItem(
+                EmailItemEntity(
+                    emailItemId = id,
+                    name = "",
+                    email = "",
+                )
+            )
+    }
 }

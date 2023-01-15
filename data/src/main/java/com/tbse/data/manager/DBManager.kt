@@ -9,4 +9,7 @@ interface DBManager {
     suspend fun getAllEmails(): List<EmailItemDTO>
 
     suspend fun addEmail(name: String, email: String)
+
+    suspend fun deleteItem(id: Int)
+
 }

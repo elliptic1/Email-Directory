@@ -44,4 +44,8 @@ class EmailListScreenViewModel @Inject constructor(
             )
         }.launchIn(viewModelScope)
     }
+
+    fun deleteItem(id: Int) {
+        emailListScreenUseCase.deleteItem(id).launchIn(viewModelScope)
+    }
 }

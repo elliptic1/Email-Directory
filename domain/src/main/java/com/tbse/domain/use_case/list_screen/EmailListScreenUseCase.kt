@@ -22,4 +22,13 @@ class EmailListScreenUseCase @Inject constructor(
             emit(Resource.Error(message = e.message ?: "No error message"))
         }
     }
+
+    fun deleteItem(id: Int): Flow<Resource<Unit>> = flow {
+       try {
+           repo.deleteItem(id)
+           emit(Resource.Success())
+       } catch (e: Exception) {
+           emit(Resource.Error(message = "Couldn't delete: ${e.message}"))
+       }
+    }
 }

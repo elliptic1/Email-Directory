@@ -17,13 +17,17 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 fun EmailListComposable(
     modifier: Modifier = Modifier,
     config: EmailListComposableConfig,
+    onDeleteClicked: (Int) -> Unit,
 ) {
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
     ) {
         items(config.emails) { emailConfig ->
-            EmailItemComposable(config = emailConfig)
+            EmailItemComposable(
+                config = emailConfig,
+                onDeleteClicked = onDeleteClicked,
+            )
         }
     }
 }
@@ -41,6 +45,7 @@ fun EmailListComposablePreview(
     EmailListComposable(
         modifier = Modifier,
         config = config,
+        onDeleteClicked = {},
     )
 }
 
@@ -51,10 +56,12 @@ class EmailListComposableConfigProvider :
             EmailListComposableConfig(
                 emails = listOf(
                     EmailItemComposableConfig(
+                        id = 0,
                         name = "Example one",
                         email = "ex@mail.com",
                     ),
                     EmailItemComposableConfig(
+                        id = 1,
                         name = "Donkey two",
                         email = "four@three.com",
                     ),

@@ -7,4 +7,7 @@ import com.tbse.domain.models.EmailListModel
  */
 interface EmailListScreenRepository {
     suspend fun getAllEmails(): EmailListModel
+
+    suspend fun deleteItem(id: Int)
+
 }

@@ -14,6 +14,7 @@ class EmailItemEntityMapper @Inject constructor(
 ) : ModelMapper<EmailItemEntity, EmailItemDTO> {
     override fun map(input: EmailItemEntity): EmailItemDTO {
         return EmailItemDTO(
+            id = input.emailItemId,
             name = input.name,
             email = input.email,
         )

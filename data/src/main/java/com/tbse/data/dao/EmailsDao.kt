@@ -1,9 +1,6 @@
 package com.tbse.data.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.tbse.data.DBConstants
 import com.tbse.data.entities.EmailItemEntity
 
@@ -18,5 +15,8 @@ interface EmailsDao {
 
     @Query("SELECT * FROM ${DBConstants.EMAIL_TABLE} ORDER BY emailItemId DESC")
     suspend fun getAllEmails(): List<EmailItemEntity>
+
+    @Delete
+    suspend fun deleteItem(emailEntity: EmailItemEntity)
 
 }

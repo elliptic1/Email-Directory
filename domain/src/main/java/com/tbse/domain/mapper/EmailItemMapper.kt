@@ -15,6 +15,7 @@ class EmailItemMapper @Inject constructor(
 ) : ModelMapper<EmailItemDTO, EmailItemModel> {
     override fun map(input: EmailItemDTO): EmailItemModel {
         return EmailItemModel(
+            id = input.id,
             name = input.name ?: "No name found",
             email = input.email ?: "No email found",
         )
