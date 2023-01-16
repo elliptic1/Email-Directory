@@ -8,6 +8,8 @@ import com.tbse.domain.models.EmailItemModel
 sealed class EmailListScreenState {
     object Loading : EmailListScreenState()
 
+    object Update : EmailListScreenState()
+
     data class ReceivedEmailList(
         val emailList: List<EmailItemModel>
     ) : EmailListScreenState()

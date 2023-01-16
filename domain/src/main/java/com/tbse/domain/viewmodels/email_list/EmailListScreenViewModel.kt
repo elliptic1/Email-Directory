@@ -1,8 +1,10 @@
 package com.tbse.domain.viewmodels.email_list
 
+import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tbse.data.resource.Resource
+import com.tbse.domain.models.EmailItemModel
 import com.tbse.domain.use_case.list_screen.EmailListScreenUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -23,6 +25,9 @@ class EmailListScreenViewModel @Inject constructor(
     val stateFlow: StateFlow<EmailListScreenState>
         get() = _stateFlow.asStateFlow()
 
+    private val _emailList = mutableStateListOf<EmailItemModel>()
+    private val emailList: List<EmailItemModel> = _emailList
+
     fun startFlow() {
         emailListScreenUseCase.getEmails().onEach { result ->
             _stateFlow.emit(
@@ -31,8 +36,10 @@ class EmailListScreenViewModel @Inject constructor(
                         EmailListScreenState.Loading
                     }
                     is Resource.Success -> {
+                        _emailList.clear()
+                        _emailList.addAll(result.data?.emails ?: emptyList())
                         EmailListScreenState.ReceivedEmailList(
-                            result.data?.emails ?: emptyList()
+                            emailList
                         )
                     }
                     is Resource.Error -> {
@@ -46,6 +53,18 @@ class EmailListScreenViewModel @Inject constructor(
     }
 
     fun deleteItem(id: Int) {
-        emailListScreenUseCase.deleteItem(id).launchIn(viewModelScope)
+        emailListScreenUseCase
+            .deleteItem(id)
+            .onEach {
+                when (it) {
+                    is Resource.Success -> {
+                        _stateFlow.emit(
+                            EmailListScreenState.Update
+                        )
+                    }
+                    else -> {}
+                }
+            }
+            .launchIn(viewModelScope)
     }
 }

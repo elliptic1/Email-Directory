@@ -2,8 +2,6 @@ package com.tbse.ui.list_screen
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -24,6 +22,7 @@ fun EmailListScreen(
 ) {
 
     val state = viewModel.stateFlow.collectAsState()
+
     when (val stateValue = state.value) {
         EmailListScreenState.Loading -> {
             EmailListScreenMessage(
@@ -34,29 +33,17 @@ fun EmailListScreen(
             viewModel.startFlow()
         }
         is EmailListScreenState.ReceivedEmailList -> {
-            val emailList = remember { mutableStateListOf<EmailItemComposableConfig>() }
-            emailList.addAll(stateValue.emailList
-                .map {
-                    EmailItemComposableConfig(
-                        id = it.id,
-                        name = it.name,
-                        email = it.email,
-                    )
-                }
-            )
+            val configList = stateValue.emailList.map {
+                EmailItemComposableConfig(
+                    id = it.id,
+                    name = it.name,
+                    email = it.email,
+                )
+            }
 
             EmailListComposable(
                 modifier = modifier,
-                config = EmailListComposableConfig(
-                    stateValue.emailList
-                        .map {
-                            EmailItemComposableConfig(
-                                id = it.id,
-                                name = it.name,
-                                email = it.email,
-                            )
-                        }
-                ),
+                config = EmailListComposableConfig(configList),
                 onDeleteClicked = {
                     viewModel.deleteItem(it)
                 }
@@ -68,6 +55,9 @@ fun EmailListScreen(
                     stateValue.error.message ?: "No error message"
                 )
             )
+        }
+        EmailListScreenState.Update -> {
+            viewModel.startFlow()
         }
     }
 }
