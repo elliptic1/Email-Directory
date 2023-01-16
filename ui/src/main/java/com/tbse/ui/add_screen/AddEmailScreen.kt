@@ -47,16 +47,19 @@ fun AddEmailScreen(
 
     Box(
         modifier = modifier
+            .padding(25.dp)
             .fillMaxSize()
     ) {
 
         Column(
             modifier = Modifier
+                .fillMaxWidth()
                 .align(Alignment.TopCenter)
-                .padding(top = 25.dp)
         ) {
 
             OutlinedTextField(
+                modifier = modifier
+                    .fillMaxWidth(),
                 value = nameTextState.value,
                 label = {
                     Text(
@@ -74,6 +77,8 @@ fun AddEmailScreen(
                     .height(25.dp)
             )
             OutlinedTextField(
+                modifier = modifier
+                    .fillMaxWidth(),
                 value = emailTextState.value,
                 label = {
                     Text(
@@ -86,21 +91,26 @@ fun AddEmailScreen(
                     emailTextState.value = it
                 },
             )
-        }
 
-        Button(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(25.dp)
-                .align(Alignment.BottomCenter),
-            onClick = {
-                viewModel.addEmail(
-                    name = nameTextState.value,
-                    email = emailTextState.value,
-                )
-            },
-        ) {
-            Text(text = stringResource(id = R.string.add_screen_add_button))
+            Spacer(
+                modifier = Modifier
+                    .height(25.dp)
+            )
+
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(75.dp)
+                    .padding(5.dp),
+                onClick = {
+                    viewModel.addEmail(
+                        name = nameTextState.value,
+                        email = emailTextState.value,
+                    )
+                },
+            ) {
+                Text(text = stringResource(id = R.string.add_screen_add_button))
+            }
         }
 
     }
