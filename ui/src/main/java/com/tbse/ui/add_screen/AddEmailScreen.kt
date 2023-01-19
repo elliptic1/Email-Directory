@@ -3,7 +3,6 @@ package com.tbse.ui.add_screen
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
-import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -37,7 +36,7 @@ fun AddEmailScreen(
         AddEmailScreenEvent.EmailAdded -> {
             Toast.makeText(
                 LocalContext.current,
-                "Added!",
+                stringResource(id = R.string.add_screen_added_toast),
                 Toast.LENGTH_SHORT,
             ).show()
             viewModel.transientMessageFinished()
