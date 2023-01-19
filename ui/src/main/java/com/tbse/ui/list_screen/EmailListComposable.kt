@@ -23,7 +23,12 @@ fun EmailListComposable(
         modifier = modifier
             .fillMaxSize()
     ) {
-        items(config.emails) { emailConfig ->
+        items(
+            items = config.emails,
+            key = { emailItem ->
+                emailItem.id
+            },
+        ) { emailConfig ->
             EmailItemComposable(
                 config = emailConfig,
                 onDeleteClicked = onDeleteClicked,
