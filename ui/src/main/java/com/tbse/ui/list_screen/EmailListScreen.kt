@@ -3,12 +3,14 @@ package com.tbse.ui.list_screen
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.tbse.domain.viewmodels.email_list.EmailListScreenState
 import com.tbse.domain.viewmodels.email_list.EmailListScreenViewModel
+import com.tbse.ui.R
 
 /**
  * Created by toddsmith on 1/14/23.
@@ -27,7 +29,7 @@ fun EmailListScreen(
         EmailListScreenState.Loading -> {
             EmailListScreenMessage(
                 config = EmailListScreenMessageConfig(
-                    "Loading..."
+                    stringResource(id = R.string.loading)
                 )
             )
             viewModel.startFlow()

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="loading">Loading…</string>
     <string name="add_screen_add_button">Add</string>
     <string name="add_screen_name_field">Name</string>
     <string name="add_screen_email_field">Email</string>
