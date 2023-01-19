@@ -39,9 +39,22 @@ fun MyNavGraph(
     }
 }
 
-sealed class Graph(val route: String, val icon: ImageVector) {
-    object Add : Graph("add_screen", Icons.Default.Add)
-    object List : Graph("list_screen", Icons.Default.List)
+sealed class Graph(
+    val route: String,
+    val icon: ImageVector,
+    val contentDescription: String,
+) {
+    object Add : Graph(
+        route = "add_screen",
+        icon = Icons.Default.Add,
+        contentDescription = "Add an Email Screen",
+    )
+
+    object List : Graph(
+        route = "list_screen",
+        icon = Icons.Default.List,
+        contentDescription = "List of all emails",
+    )
 }
 
 val screens = listOf(

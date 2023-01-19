@@ -34,7 +34,7 @@ fun MyBottomBar(
                 icon = {
                     Icon(
                         modifier = Modifier,
-                        contentDescription = "",
+                        contentDescription = screen.contentDescription,
                         imageVector = screen.icon,
                     )
                 },
