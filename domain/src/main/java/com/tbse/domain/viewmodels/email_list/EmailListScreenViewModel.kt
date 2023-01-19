@@ -1,7 +1,6 @@
 package com.tbse.domain.viewmodels.email_list
 
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tbse.data.resource.Resource
