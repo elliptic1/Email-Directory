@@ -58,40 +58,31 @@ fun AddEmailScreen(
                 .fillMaxWidth()
                 .align(Alignment.TopCenter)
         ) {
-
-            OutlinedTextField(
-                modifier = modifier
-                    .fillMaxWidth(),
-                value = nameTextState.value,
-                label = {
-                    Text(
-                        text = stringResource(
-                            id = R.string.add_screen_name_field
-                        )
-                    )
-                },
-                onValueChange = {
-                    nameTextState.value = it
-                },
+            MyInputTextField(
+                modifier = modifier,
+                config = MyInputTextFieldConfig(
+                    value = nameTextState.value,
+                    labelResourceId = R.string.add_screen_name_field,
+                    onValueChange = {
+                        nameTextState.value = it
+                    }
+                )
             )
+
             Spacer(
                 modifier = Modifier
                     .height(25.dp)
             )
-            OutlinedTextField(
-                modifier = modifier
-                    .fillMaxWidth(),
-                value = emailTextState.value,
-                label = {
-                    Text(
-                        text = stringResource(
-                            id = R.string.add_screen_email_field
-                        )
-                    )
-                },
-                onValueChange = {
-                    emailTextState.value = it
-                },
+
+            MyInputTextField(
+                modifier = modifier,
+                config = MyInputTextFieldConfig(
+                    value = emailTextState.value,
+                    labelResourceId = R.string.add_screen_email_field,
+                    onValueChange = {
+                        emailTextState.value = it
+                    }
+                )
             )
 
             Spacer(
