@@ -40,9 +40,11 @@ fun AddEmailScreen(
                 "Added!",
                 Toast.LENGTH_SHORT,
             ).show()
+            viewModel.transientMessageFinished()
         }
         AddEmailScreenEvent.Default -> {}
         AddEmailScreenEvent.Error -> {}
+        AddEmailScreenEvent.TransientMessageFinished -> {}
     }
 
     Box(

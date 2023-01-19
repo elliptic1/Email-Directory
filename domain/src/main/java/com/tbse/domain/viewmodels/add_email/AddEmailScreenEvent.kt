@@ -9,6 +9,8 @@ sealed class AddEmailScreenEvent {
 
     object EmailAdded : AddEmailScreenEvent()
 
+    object TransientMessageFinished : AddEmailScreenEvent()
+
     object Error : AddEmailScreenEvent()
 
 }

@@ -7,6 +7,7 @@ import com.tbse.domain.models.EmailItemModel
 import com.tbse.domain.use_case.add_screen.AddEmailScreenUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -47,5 +48,11 @@ class AddEmailScreenViewModel @Inject constructor(
                 )
             }
         }.launchIn(viewModelScope)
+    }
+
+    fun transientMessageFinished() {
+        viewModelScope.launch {
+            _eventFlow.emit(AddEmailScreenEvent.TransientMessageFinished)
+        }
     }
 }
