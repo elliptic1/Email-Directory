@@ -1,6 +1,7 @@
 package com.tbse.domain.viewmodels.email_list
 
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tbse.data.resource.Resource
@@ -55,12 +56,10 @@ class EmailListScreenViewModel @Inject constructor(
     fun deleteItem(id: Int) {
         emailListScreenUseCase
             .deleteItem(id)
-            .onEach {
-                when (it) {
+            .onEach { response ->
+                when (response) {
                     is Resource.Success -> {
-                        _stateFlow.emit(
-                            EmailListScreenState.Update
-                        )
+                        _emailList.removeIf { it.id == id }
                     }
                     else -> {}
                 }
